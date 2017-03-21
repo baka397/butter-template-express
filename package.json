@@ -1,0 +1,19 @@
+{
+  "name": "butter-template-express",
+  "version": "1.0.0",
+  "description": "butter cli template for express",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baka397/butter-template-express.git"
+  },
+  "keywords": [
+    "cli",
+    "butter"
+  ],
+  "author": "bakajinsei<cqggff@live.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/baka397/butter-template-express/issues"
+  },
+  "homepage": "https://github.com/baka397/butter-template-express#readme"
+}
