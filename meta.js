@@ -94,7 +94,7 @@ module.exports={
     ],
     'filters':{
         'redis':'common/redis.js',
-        'redis-session':'modules/session.js',
+        'redis-session':'middlewares/session.js',
         'mongoose':['models/**','proxy/**'],
         'api':'modules/api.js',
         'gulp':'build/**',

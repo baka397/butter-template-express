@@ -9,8 +9,9 @@ const log = require('./log');
 const router = require('./router');
 const tool = require('./common/tool');
 const pkg = require('./package.json');
+const STATUS_CODE = require('./enums/status_code');
 {{#if session}}
-const session = require('./moudles/session');
+const session = require('./middleware/session');
 {{/if}}
 
 //Init app
@@ -29,12 +30,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 {{#if session}}
-// set session
-app.use(session());
+// init session
+app.use(session.init);
 {{/if}}
 
-// render global variable
 app.use(function(req, res, next) {
+    // set secure header
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    // set render global variable
     res.locals.version = pkg.version;
     next();
 });
@@ -54,7 +57,7 @@ app.use(function (req, res, next) {
 
 // error handlers
 app.use(function (err, req, res, next) {
-    if(err.code!==404) log.error(err);
+    if(parseInt(err.code)!==404) log.error(err);
     let code = err.code || err.status || 500;
     let message = err.message || err.stack;
     if (/TIMEDOUT/i.test(code) || err.syscall == 'connect' || err.hasOwnProperty('connect')) {
@@ -62,15 +65,28 @@ app.use(function (err, req, res, next) {
         message = '网络异常，请稍候再试';
     }else if(/^\d+$/.test(code)){
         switch(code){
-        case 404:
+        case STATUS_CODE.NOT_FOUND:
             message = '找不到当前页面';
             break;
-        case 500:
+        case STATUS_CODE.UNKNOWN_ERROR:
             message = '系统错误';
             break;
-        case 502:
+        case STATUS_CODE.GETWAY_ERROR:
             message = '数据访问异常，请稍后重试';
             break;
+        {{#if mongoose}}
+        case STATUS_CODE.MONGO_ERROR:
+            if(err.errors){
+                let errorName = Object.keys(err.errors)[0];
+                if(err.errors[errorName].name==='CastError') message = '参数类型错误';
+                else message = err.errors[errorName].message;
+            }
+            break;
+        case STATUS_CODE.MONGO_UNIQUE_ERROR:
+            code = STATUS_CODE.MONGO_ERROR;
+            message = message.replace(/^[\S\s]+\"([\S\s]+)\"[\S\s]+$/,'$1') + '已被占用';
+            break;
+        {{/if}}
         }
     }else{
         code=500;

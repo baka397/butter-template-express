@@ -1,5 +1,6 @@
 'use strict';
 const pkg = require('../package.json');
+const projectPrefix = pkg.name.replace(/^([\w\.]+)\.\w+\.\w+$/,'$1');
 
 // 默认配置
 let defaultConfig = {
@@ -9,8 +10,11 @@ let defaultConfig = {
         name: pkg.name,                                     // 项目名称
         version: pkg.version                                // 项目版本
     },
+    {{#if api}}
+    api:'',                                                 // api地址
+    {{/if}}
     {{#if mongoose}}
-    db:'',                                                  // More info http://mongoosejs.com/docs/api.html#index_Mongoose-createConnection
+    db:'mongodb://127.0.0.1/test',                          // More info http://mongoosejs.com/docs/api.html#index_Mongoose-createConnection
     {{/if}}
     log: {
         path: './logs/',                                    // 日志路径
@@ -30,7 +34,18 @@ let defaultConfig = {
     //运营配置
     maxPageNum:10,                                          //最大分页数
     pageSize:10,                                            //默认列表数
-    maxPageSize:150                                         //最大列表数
+    maxPageSize:150,                                        //最大列表数
+    //session配置
+    session:{
+        secret: pkg.name+'secretkey',                       //加密盐
+        sessionKey: projectPrefix +'-sid',                  //session 名称
+        maxAge: 30 * 60 *1000,                              //cookie时间(毫秒)
+        redisExpire: 24 * 60 * 60,                          //Redis 过期时间
+        path: '/',                                          //cookie存储路径
+        httpOnly: true,                                     //是否只适用于http请求
+        refreshSession:true,                                //是否每次请求刷新cookie过期时间
+        secure:false                                        //是否仅适用于HTTPS
+    }
 };
 // 启动配置，部署环境变量：dev、test、uat、online
 let startupConfig = process.env.CFG_PATH || ('./config-' + (process.env.NODE_ENV || 'dev'));

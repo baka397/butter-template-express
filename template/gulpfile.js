@@ -40,7 +40,6 @@ gulp.task('build',[{{#if less}}'less'{{/if}}],function() {
     gulp.src(['./build/css/plugins/**']).pipe(gulp.dest('./public/css/plugins'));//打包插件
     gulp.src(['./build/fonts/**']).pipe(gulp.dest('./public/fonts'));
     gulp.src(['./build/js/*.js']).pipe(uglify()).pipe(gulp.dest('./public/js')); //压缩工程输出文件
-    // gulp.src(['./build/js/page/**']).pipe(uglify()).pipe(gulp.dest('./public/js/page')); //压缩工程输出文件
     gulp.src(['./build/js/plugins/**']).pipe(gulp.dest('./public/js/plugins'));//打包插件目录
     gulp.src(['./build/data/**']).pipe(gulp.dest('./public/data'));
     gulp.src(['./build/views/**']).pipe(gulp.dest('views'));
