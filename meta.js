@@ -50,6 +50,21 @@ module.exports={
             'message':'是否开启api请求?\nOpen api?'
         },
         {
+            'name':'gulp',
+            'type':'confirm',
+            'default':true,
+            'message':'是否开启gulp?\nOpen gulp?'
+        },
+        {
+            'name':'less',
+            'type':'confirm',
+            'default':true,
+            'message':'是否开启less?\nOpen less?',
+            'when':function(answers) {
+                return answers.gulp;
+            }
+        },
+        {
             'name':'eslint',
             'type':'confirm',
             'default':true,
@@ -75,7 +90,9 @@ module.exports={
         'redis':'common/redis.js',
         'redis-session':'modules/session.js',
         'mongoose':['models/**','proxy/**'],
-        'api':'common/api.js',
+        'api':'modules/api.js',
+        'gulp':'build/**',
+        'less':'build/less/**',
         'eslint':'.eslintrc.js',
         'unit-test':'test/**'
     }

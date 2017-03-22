@@ -1,0 +1,40 @@
+{
+  "name": "{{name}}",
+  "version": "1.0.0",
+  "description": "{{description}}",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"{{#if gulp}},
+    "build": "gulp clean && gulp build"{{/if}}{{#if unit-test}},
+    "test": "set NODE_ENV=case&& node ./node_modules/mocha/bin/mocha --timeout 200000"{{#if cov-test}},
+    "test-cov": "set NODE_ENV=case&& node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha"{{/if}}{{/if}}
+  },
+  "devDependencies": {
+    "archiver": "^1.1.0"{{#if gulp}},
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-filter": "^4.0.0"{{#if less}},
+    "gulp-less": "^3.1.0"{{/if}},
+    "gulp-minify-css": "^1.2.4",
+    "gulp-uglify": "^2.0.0"{{/if}}{{#if unit-test}},
+    {{#if cov-test}}
+    "istanbul": "^0.4.5",
+    {{/if}}
+    "mocha": "^3.1.2",
+    "nock": "^9.0.2",
+    "supertest": "^2.0.1"
+    {{/if}}
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.2"{{#if api}},
+    "request": "^2.75.0"{{/if}},
+    "express": "^4.14.0"{{#if redis}},
+    "ioredis": "^2.3.0"{{/if}},
+    "log4js": "^0.6.38"{{#if mongoose}},
+    "mongoose": "^4.6.7",
+    "mongoose-validator": "^1.2.5"{{/if}},
+    "serve-favicon": "^2.3.0"
+  }
+}
