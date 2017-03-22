@@ -11,7 +11,7 @@ const tool = require('./common/tool');
 const pkg = require('./package.json');
 const STATUS_CODE = require('./enums/status_code');
 {{#if redis-session}}
-const session = require('./middleware/session');
+const session = require('./middlewares/session');
 {{/if}}
 
 //Init app

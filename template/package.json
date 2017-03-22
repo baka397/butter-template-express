@@ -5,6 +5,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    {{#if gulp}}
+    "build": "{{#if gulp}}gulp clean && gulp build{{/if}}",
+    {{/if}}
     "pack": "{{#if gulp}}gulp clean && gulp build && {{/if}}node archive.js"{{#if unit-test}},
     "test": "set NODE_ENV=case&& node ./node_modules/mocha/bin/mocha --timeout 200000"{{#if cov-test}},
     "test-cov": "set NODE_ENV=case&& node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha"{{/if}}{{/if}}
