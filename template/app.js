@@ -10,7 +10,7 @@ const router = require('./router');
 const tool = require('./common/tool');
 const pkg = require('./package.json');
 const STATUS_CODE = require('./enums/status_code');
-{{#if session}}
+{{#if redis-session}}
 const session = require('./middleware/session');
 {{/if}}
 
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-{{#if session}}
+{{#if redis-session}}
 // init session
 app.use(session.init);
 {{/if}}
