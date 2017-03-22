@@ -8,6 +8,12 @@ module.exports={
             'message':'项目名称\nProject name'
         },
         {
+            'name':'version',
+            'type':'input',
+            'default':'1.0.0',
+            'message':'版本号\nVersion'
+        },
+        {
             'name':'description',
             'type':'input',
             'default':'A express simple demo',
