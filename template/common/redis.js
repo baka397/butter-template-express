@@ -1,7 +1,7 @@
 'use strict';
 const Redis = require('ioredis');
 const config = require('../config/');
-const log = require('../log');
+const log = require('../common/log');
 {{#if redis-cluster}}
 let redisClient = new Redis(config.redis);
 {{else}}

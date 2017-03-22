@@ -2,8 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 const log4js = require('log4js');
-const config = require('./config/');
-const tool = require('./common/tool');
+const config = require('../config/');
+const tool = require('../common/tool');
 let logPath = process.env.LOG_PATH || config.log.path, logType = config.log.type, logLevel = config.log.level;
 //同步创建日志目录
 try{

@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const pkg = require('../package.json');
 const redisClient = require('../common/redis');
 const config = require('../config/');
-const log = require('../log');
+const log = require('../common/log');
 
 let notConn = false;
 let sessionIdKeyPrefix = pkg.name+'-';

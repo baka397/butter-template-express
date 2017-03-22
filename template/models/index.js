@@ -1,7 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
 const config = require('../config/');
-const log = require('../log');
+const log = require('../common/log');
 mongoose.Promise = Promise;
 mongoose.connect(config.db, {
     server: {poolSize: 20}

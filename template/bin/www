@@ -10,7 +10,7 @@ const app = require('../app');
 const http = require('http');
 const pkg = require('../package.json');
 const config = require('../config/');
-const log = require('../log');
+const log = require('../common/log');
 
 /**
  * Get port from environment and store in Express.
