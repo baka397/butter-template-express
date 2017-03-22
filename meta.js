@@ -97,7 +97,7 @@ module.exports={
         'redis-session':'middlewares/session.js',
         'mongoose':['models/**','proxy/**'],
         'api':'modules/api.js',
-        'gulp':'build/**',
+        'gulp':['build/**','gulpfile.js'],
         'less':'build/less/**',
         'eslint':'.eslintrc.js',
         'unit-test':'test/**'
