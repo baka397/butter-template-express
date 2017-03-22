@@ -10,8 +10,8 @@ const api = require('../modules/api');
 {{/if}}
 {{#if mongoose}}
 const TestProxy = require('../proxy/');
-const STATUS_CODE = require('../enums/status_code');
 {{/if}}
+const STATUS_CODE = require('../enums/status_code');
 
 exports.requestMapping = '/test';
 
