@@ -1,0 +1,27 @@
+<% if(!isAjax){ %>
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="<% if(contextPath){%><%=contextPath%><%} else {%><%='/'%><%} %>"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title><%= title %></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+
+<body>
+<% } %>
+    <div class="app-tip">
+    	<div class="app-tip-title"><%= code %></div>
+    	<div class="app-tip-message"><%= msg %></div>
+    </div>
+<% if(!isAjax){ %>
+    <p class="m-t-hg text-center"><a class="btn btn-primary" href="/">返回首页</a></p>
+</body>
+</html>
+<% }else{ %>
+    <p class="p-t-hg text-center p-b-hg"><button class="btn btn-danger" type="button" id="modal-info-close">关闭窗口</button></p>
+<% } %>
