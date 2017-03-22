@@ -4,7 +4,7 @@ const config = require('../config/');
 const log = require('../log');
 {{#if redis-cluster}}
 let redisClient = new Redis(config.redis);
-{{/else}}
+{{else}}
 let redisClient = new Redis.Cluster(config.redisNodes);
 {{/if}}
 redisClient.on('error', function (err) {

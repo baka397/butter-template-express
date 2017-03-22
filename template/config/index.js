@@ -27,7 +27,7 @@ let defaultConfig = {
         port:6379,
         host:'127.0.0.1'
     },
-    {{/else}}
+    {{else}}
     redisNodes: [],
     {{/if}}
     {{/if}}
