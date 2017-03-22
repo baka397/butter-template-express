@@ -3,7 +3,7 @@ const queryString = require('querystring');
 const request = require('superagent');
 const config = require('../config/');
 const log = require('../log');
-const tool = require('./tool');
+const tool = require('../common/tool');
 const STATUS_CODE = require('../enums/status_code');
 const URL = {
     'test':'/'

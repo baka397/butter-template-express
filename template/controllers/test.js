@@ -5,15 +5,24 @@
 const express = require('express');
 const router = express.Router();
 const tool = require('../common/tool');
+{{#if api}}
+const api = require('../modules/api');
+{{/if}}
+{{#if mongoose}}
 const TestProxy = require('../proxy/');
 const STATUS_CODE = require('../enums/status_code');
+{{/if}}
 
 exports.requestMapping = '/test';
 
 //get list demo
 router.get('/', function (req, res) {
     tool.setListInfo(req);
-    res.send(req.query);
+    res.send({
+        code:STATUS_CODE.SUCCESS,
+        data:req.query,
+        message:'获取成功'
+    });
 });
 
 {{#if mongoose}}

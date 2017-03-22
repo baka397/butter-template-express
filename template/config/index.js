@@ -11,7 +11,7 @@ let defaultConfig = {
         version: pkg.version                                // 项目版本
     },
     {{#if api}}
-    api:'',                                                 // api地址
+    api:'http://127.0.0.1:8080/test/',                      // api地址
     {{/if}}
     {{#if mongoose}}
     db:'mongodb://127.0.0.1/test',                          // More info http://mongoosejs.com/docs/api.html#index_Mongoose-createConnection
