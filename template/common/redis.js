@@ -9,11 +9,11 @@ let redisClient = new Redis(config.redis);
 {{/if}}
 {{#if redis-cluster}}
 redisClient.on('error', function (err) {
-    log.error('Redis connect error:'+config.redisNodes.toString());
+    log.error('Redis connect error:'+JSON.stringify(config.redisNodes));
     log.error(err);
 });
 redisClient.on('connect', function () {
-    log.info('Redis connect succeed:'+config.redisNodes.toString());
+    log.info('Redis connect succeed:'+JSON.stringify(config.redisNodes));
 });
 {{else}}
 redisClient.on('error', function (err) {
