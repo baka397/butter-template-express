@@ -2,7 +2,7 @@
 const Redis = require('ioredis');
 const config = require('../config/');
 const log = require('../common/log');
-{{#if redis-cluster}}
+{{#if !redis-cluster}}
 let redisClient = new Redis(config.redis);
 {{else}}
 let redisClient = new Redis.Cluster(config.redisNodes);
