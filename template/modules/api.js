@@ -43,7 +43,7 @@ function apiRequest(action,data,method){
         if(method!=='get'&&!tool.isObjEmpty(data)){
             requestObj.send(data);
             log.info('请求数据');
-            log.info(tool.filterReqLog(data));
+            log.info(tool.filterLimitData(data));
         }
         requestObj.end(function(err,res){
             //处理超时错误
