@@ -22,13 +22,13 @@ let defaultConfig = {
         level: 'debug'                                      // 日志打印级别：trace、debug、info、warn、error、fatal
     },
     {{#if redis}}
-    {{#if !redis-cluster}}
+    {{#if redis-cluster}}
+    redisNodes: [],
+    {{else}}
     redis:{
         port:6379,
         host:'127.0.0.1'
     },
-    {{else}}
-    redisNodes: [],
     {{/if}}
     {{/if}}
     //运营配置

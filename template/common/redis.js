@@ -2,10 +2,10 @@
 const Redis = require('ioredis');
 const config = require('../config/');
 const log = require('../common/log');
-{{#if !redis-cluster}}
-let redisClient = new Redis(config.redis);
-{{else}}
+{{#if redis-cluster}}
 let redisClient = new Redis.Cluster(config.redisNodes);
+{{else}}
+let redisClient = new Redis(config.redis);
 {{/if}}
 redisClient.on('error', function (err) {
     log.error('Redis connect error',config.redis.host+':'+config.redis.port);
