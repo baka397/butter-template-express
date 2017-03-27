@@ -17,6 +17,8 @@
     "moment": "^2.15.1"{{#if gulp}},
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
     "gulp-filter": "^4.0.0"{{#if less}},
     "gulp-less": "^3.1.0"{{/if}},
     "gulp-minify-css": "^1.2.4",
