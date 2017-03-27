@@ -5,25 +5,23 @@ const config = require('../config/');
 const log = require('../common/log');
 const tool = require('../common/tool');
 const STATUS_CODE = require('../enums/status_code');
-const URL = {
-    'test':'/'
+exports.services = {
+    'test': config.api + '/'
 };
 
 /**
  * 请求接口数据
- * @param  {String} action 动作名称
+ * @param  {String} url    动作名称
  * @param  {Object} data   发送数据
  * @param  {String} method 请求类型
  * @return {Object}        Promise对象
  */
-function apiRequest(action,data,method){
-    let url = URL[action];
+function apiRequest(url,data,method){
     if(!url){
         let error = new Error('无效的API请求地址');
         error.status = STATUS_CODE.ERROR;
         return tool.nextPromise(error);
     }
-    url = config.api+url;
     let idReg=/\:id/;
     if(idReg.test(url)){
         url=url.replace(idReg,data.id);

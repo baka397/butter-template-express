@@ -45,7 +45,7 @@ router.post('/',function(req,res,next){
 
 {{#if api}}
 router.post('/api/',function(req,res,next){
-    api.request('test',req.body).then(function(data){
+    api.request(api.services.test,req.body).then(function(data){
         res.send({
             code:STATUS_CODE.SUCCESS,
             data:data,
