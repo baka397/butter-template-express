@@ -57,7 +57,7 @@ exports.init = function (req, res, next) {
                 log.error(err);
             }
             if (reply) {
-                var session = JSON.parse(reply);
+                let session = JSON.parse(reply);
                 req.session = session;
                 if(config.session.refreshSession) writeHead(req, res);
                 return next();
@@ -76,14 +76,14 @@ exports.save = function (req, res, next) {
         }
         return false;
     }
-    var id = req.session.id;
+    let id = req.session.id;
     if (!id) {
         if (next) {
             next();
         }
         return false;
     }
-    var json = JSON.stringify(req.session);
+    let json = JSON.stringify(req.session);
     redisClient.hset(id, 'session', json,
         function (err) {
             if (err) {
@@ -111,7 +111,7 @@ exports.del = function (req, res, next) {
         }
         return false;
     }
-    var id = req.cookies[config.session.sessionKey];
+    let id = req.cookies[config.session.sessionKey];
     if (!id) {
         if (next) {
             next();
