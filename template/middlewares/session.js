@@ -41,7 +41,7 @@ function serialize(opt) {
     return options;
 }
 
-module.exports.init = function (req, res, next) {
+exports.init = function (req, res, next) {
     let id = req.cookies[config.session.sessionKey];
     if (!id) {
         req.session = generate();
@@ -69,7 +69,7 @@ module.exports.init = function (req, res, next) {
     }
 };
 
-module.exports.save = function (req, res, next) {
+exports.save = function (req, res, next) {
     if (notConn) {
         if (next) {
             next();
@@ -104,7 +104,7 @@ module.exports.save = function (req, res, next) {
         });
 };
 
-module.exports.del = function (req, res, next) {
+exports.del = function (req, res, next) {
     if (notConn) {
         if (next) {
             next();
