@@ -31,7 +31,7 @@ function apiRequest(url,data,method){
     if (method === 'get' && !tool.isObjEmpty(data)) {
         url += (/\?/.test(url) ? '&' : '?') + queryString.stringify(data);
     }
-    log.info(method.toUpperCase(),url);
+    log.info('API '+method.toUpperCase()+': '+url);
     return new Promise(function(resolve,reject){
         let requestObj=request[method](url)
         .timeout({
