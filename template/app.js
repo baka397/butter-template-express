@@ -60,7 +60,7 @@ app.use(function (err, req, res, next) {
     if(parseInt(err.code)!==404) log.error(err);
     let code = err.code || err.status || 500;
     let message = err.message || err.stack;
-    if (/TIMEDOUT/i.test(code) || err.syscall == 'connect' || err.hasOwnProperty('connect')) {
+    if (/ECONNABORTED/i.test(code) || err.syscall == 'connect' || err.hasOwnProperty('connect')) {
         code = 408;
         message = '网络异常，请稍候再试';
     }else if(/^\d+$/.test(code)){
