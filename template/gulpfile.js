@@ -4,7 +4,6 @@ const uglify = require('gulp-uglify');
 const minifycss = require('gulp-minify-css');
 const del = require('del');
 const less = require('gulp-less');
-const imagemin = require('gulp-imagemin');
 const notify = require('gulp-notify'); //显示报错信息和报错后不终止当前gulp任务
 const plumber = require('gulp-plumber'); //捕获处理任务中的错误
 
@@ -40,12 +39,6 @@ gulp.task('default', ['less'], function() {
  */
 gulp.task('build', ['less'], function() {
     gulp.src(['./build/img/**']).pipe(gulp.dest('./public/img'));
-    gulp.src(['./public/img/**/*.{png,jpg,jpeg,gif,ico}']).pipe(imagemin({
-        optimizationLevel: 7, //默认：3  取值范围：0-7（优化等级）
-        progressive: true, //默认：false 无损压缩jpg图片
-        interlaced: true, //默认：false 隔行扫描gif进行渲染
-        multipass: true //默认：false 多次优化svg直到完全优化
-    })).pipe(gulp.dest('./public/img')); //压缩图片
     gulp.src(['./build/css/*.css']).pipe(minifycss()).pipe(gulp.dest('./public/css')); //压缩工程输出工程
     gulp.src(['./build/css/plugins/**']).pipe(gulp.dest('./public/css/plugins'));//打包插件
     gulp.src(['./build/fonts/**']).pipe(gulp.dest('./public/fonts'));
