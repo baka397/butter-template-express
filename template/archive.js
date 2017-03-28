@@ -9,7 +9,7 @@ const pkg = require('./package.json');
 const archiveFilePath = path.join(__dirname, pkg.name + '-' + pkg.version + '-' + moment().format('YYYYMMDDHHmmss') + '.zip');
 
 //设置打包文件
-const zipList=['favicon.ico', 'app.js', 'log.js', 'router.js', 'package.json', 'bin/**', 'common/**', 'config/**', 'controllers/**', 'middlewares/**' , 'public/**', 'views/**', 'enums/**', 'node_modules/**'];
+const zipList=['favicon.ico', 'app.js', 'router.js', 'package.json', 'bin/**', 'common/**', 'config/**', 'controllers/**', 'middlewares/**' , 'public/**', 'views/**', 'enums/**', 'node_modules/**', 'modules/**', 'proxy/**', 'models/**'];
 
 // 设置打包路径
 let output = fs.createWriteStream(archiveFilePath);
