@@ -11,12 +11,14 @@ exports.services = {
 
 /**
  * 请求接口数据
- * @param  {String} url    动作名称
- * @param  {Object} data   发送数据
- * @param  {String} method 请求类型
- * @return {Object}        Promise对象
+ * @param  {String} url        请求地址
+ * @param  {Object} data       发送数据
+ * @param  {String} method     请求类型
+ * @param  {Boolen} closeCheck 是否关闭验证
+ * @param  {Boolen} json       是否以json格式传输数据
+ * @return {Object}            Promise对象
  */
-function apiRequest(url,data,method){
+function apiRequest(url,data,method,closeCheck,json){
     if(!url){
         let error = new Error('无效的API请求地址');
         error.status = STATUS_CODE.ERROR;
@@ -38,6 +40,9 @@ function apiRequest(url,data,method){
             response: 5000,  // Wait 5 seconds for the server to start sending,
             deadline: 60000, // but allow 1 minute for the file to finish loading.
         });
+        if(!json){
+            requestObj.type('form');
+        }
         if(method!=='get'&&!tool.isObjEmpty(data)){
             requestObj.send(data);
             log.info('请求数据');
@@ -50,8 +55,9 @@ function apiRequest(url,data,method){
                 return reject(err);
             }
             log.info(res.body);
-            if(res.status===200&&res.body.code===STATUS_CODE.SUCCESS){
-                return resolve(res.body.data);
+            if(res.status===200&&(closeCheck||res.body.code===STATUS_CODE.SUCCESS)){
+                if(closeCheck) return resolve(res.body);
+                else return resolve(res.body.data);
             }else{
                 let error = new Error(res.body.msg||'API处理错误');
                 error.status = res.body.code||res.status;
