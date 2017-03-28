@@ -11,11 +11,11 @@ exports.services = {
 
 /**
  * 请求接口数据
- * @param  {String} url        请求地址
- * @param  {Object} data       发送数据
- * @param  {String} method     请求类型
- * @param  {Boolen} closeCheck 是否关闭验证
- * @param  {Boolen} json       是否以json格式传输数据
+ * @param  {String}  url        请求地址
+ * @param  {Object}  data       发送数据
+ * @param  {String}  method     请求类型
+ * @param  {Boolean} closeCheck 是否关闭验证
+ * @param  {Boolean} json       是否以json格式传输数据
  * @return {Object}            Promise对象
  */
 function apiRequest(url,data,method,closeCheck,json){
