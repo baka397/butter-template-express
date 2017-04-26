@@ -59,7 +59,8 @@ exports.use = function (app) {
 };
 const logTypeList = ['info','error','trace','debug','warn','fatal'];
 logTypeList.forEach(function(type){
-    exports[type]=function(msg){
-        logger.info(msg);
+    exports[type]=function(){
+        let args=Array.prototype.slice.call(arguments, 0);
+        logger[type].apply(logger,args);
     };
 });
